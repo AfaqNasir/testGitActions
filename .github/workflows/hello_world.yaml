@@ -11,15 +11,15 @@ on:
 
 jobs:
   hello:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
-      - user: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: hello world
         run: echo "Hello World, This is the first job of my github Actions"
         shell: bash
 
   goodbye:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: good bye world
         run: echo "Good Bye World, My Second Job of GitHub Action"
