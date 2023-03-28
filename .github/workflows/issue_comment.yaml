@@ -16,6 +16,9 @@ jobs:
         with:
           issue-number: 1
           body: |
-            This issue is available for anyone to work on. **Make sure to reference this issue in your pull request.** :sparkles: Thank you for your contribution! :sparkles:
+            This is a multi-line test comment
+            - With GitHub **Markdown** :sparkles:
+            - Created by [create-or-update-comment][1]
+
             [1]: https://github.com/peter-evans/create-or-update-comment
-          reactions: '+1'		
+          reactions: '+1'
