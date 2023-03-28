@@ -9,16 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name "dump github context"
-        run: echo ${{ toJSON(github.event) }} | jq
+        run: echo $'{{ toJSON(github.event) }}' | jq
         shell: bash
-	    - name: Create comment
-		  uses: peter-evans/create-or-update-comment@v2
-		  with:
-		  issue-number: ${{ github.event.issue.neumber }}
-		  body: |
-		  This is a multi-line test comment
-		  - With GitHub **Markdown** :sparkles:
-		  - Created by [create-or-update-comment][1]
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+        issue-number: ${{ github.event.issue.neumber }}
+        body: |
+         This is a multi-line test comment
+	 - With GitHub **Markdown** :sparkles:
+	 - Created by [create-or-update-comment][1]
 
-		  [1]: https://github.com/peter-evans/create-or-update-comment
-		  reactions: '+1'		
+        [1]: https://github.com/peter-evans/create-or-update-comment
+        reactions: '+1'		
