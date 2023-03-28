@@ -1,13 +1,14 @@
 name: Hello World workflow
 
 on: 
-  push:
-    branches:
-      - main:
-  pull_request:
-    branches:
-      - main:
-  workflow_dispatch:
+    push:
+      branches:
+        - main:
+    
+    pull_request:
+      branches:
+        - main:
+    workflow_dispatch:
 
 jobs:
   hello:
@@ -23,4 +24,3 @@ jobs:
     steps:
       - name: good bye world
         run: echo "Good Bye World, My Second Job of GitHub Action"
-
