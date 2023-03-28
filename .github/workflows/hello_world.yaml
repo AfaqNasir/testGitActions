@@ -1,20 +1,19 @@
 name: Hello World workflow
 
 on:
+  workflow_dispatch:
   push:
     branches:
-      - main:
+      - main
   pull_request:
     branches:
-      - main:
-
-workflow_dispatch:
+      - main
 
 jobs:
   hello:
     run-on: ubuntu-latest
     steps:
-      - user: actions/checkout@v3
+      - user: actions/checkout@v2
       - name: hello world
         run: echo "Hello World, This is the first job of my github Actions"
         shell: bash
