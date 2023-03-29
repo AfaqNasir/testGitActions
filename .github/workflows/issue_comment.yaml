@@ -25,6 +25,7 @@ jobs:
           reactions: "+1"
 
   comment-with-api:
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Create comment with API
