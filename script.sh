@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Access the secret variable
-echo "My secret is: $MY_SECRET" | base64 --decode.
+echo $MY_SECRET | base64 --decode
 
 # Use the secret variable in your script
 # Your script logic here
