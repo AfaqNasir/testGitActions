@@ -14,9 +14,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-
       - name: Make script.sh executable
         run: chmod +x script.sh
 
+      - name: Decrypt and set secret as environment variable
+        uses: softprops/action-secrets@v1
+        with:
+          secrets: MY_SECRET
+          env: MY_SECRET_DECRYPTED
+      
       - name: Run Bash script
         run: ./script.sh
