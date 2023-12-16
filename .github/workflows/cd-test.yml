@@ -7,19 +7,18 @@ on:
       - completed
 
 jobs:
-  deploy_docker_images:
+  deploy_to_test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
-      - name: Deploy Docker images
+      - name: Deploy to test environment
         run: |
-          for i in {1..20}; do
-            docker run myapp:$i
-            # Add additional deployment steps as needed
-          done
+          # Example: Deploy Docker images to a test environment
+          docker run -d -p 8080:80 your-username/image1
+          docker run -d -p 8081:80 your-username/image2
+          docker run -d -p 8082:80 your-username/image3
+          docker run -d -p 8083:80 your-username/image4
+          docker run -d -p 8084:80 your-username/image5
