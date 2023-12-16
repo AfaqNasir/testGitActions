@@ -7,18 +7,21 @@ on:
       - completed
 
 jobs:
-  deploy_to_test:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Deploy to test environment
+      - name: Check system status
         run: |
-          # Example: Deploy Docker images to a test environment
-          docker run -d -p 8080:80 your-username/image1
-          docker run -d -p 8081:80 your-username/image2
-          docker run -d -p 8082:80 your-username/image3
-          docker run -d -p 8083:80 your-username/image4
-          docker run -d -p 8084:80 your-username/image5
+          systemctl status apache2
+          systemctl status mysql
+
+      - name: Generate Dockerfile
+        run: |
+          echo "FROM ubuntu:latest" > Dockerfile
+          echo "RUN apt-get update && apt-get install -y apache2 php mysql-client" >> Dockerfile
+
+  # Add more jobs or steps as needed
