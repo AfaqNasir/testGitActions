@@ -3,21 +3,48 @@ name: CI
 on:
   push:
     branches:
-      - test
+      - main
 
 jobs:
-  build_docker_images:
+  build_dockerfiles:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
-      - name: Build Docker images
+      - name: Generate Dockerfiles
         run: |
-          for i in {1..20}; do
-            docker build -t myapp:$i -f dockerfiles/Dockerfile$i .
-          done
+          echo "Dockerfile content for your project" > Dockerfile1
+          echo "Dockerfile content for your project" > Dockerfile2
+          echo "Dockerfile content for your project" > Dockerfile3
+          echo "Dockerfile content for your project" > Dockerfile4
+          echo "Dockerfile content for your project" > Dockerfile5
+
+  build_and_push_images:
+    runs-on: ubuntu-latest
+
+    needs: build_dockerfiles
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push Docker images
+        run: |
+          docker build -t your-username/image1 -f Dockerfile1 .
+          docker build -t your-username/image2 -f Dockerfile2 .
+          docker build -t your-username/image3 -f Dockerfile3 .
+          docker build -t your-username/image4 -f Dockerfile4 .
+          docker build -t your-username/image5 -f Dockerfile5 .
+          docker push your-username/image1
+          docker push your-username/image2
+          docker push your-username/image3
+          docker push your-username/image4
+          docker push your-username/image5
