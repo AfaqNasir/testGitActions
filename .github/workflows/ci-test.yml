@@ -3,14 +3,21 @@ name: CI
 on:
   push:
     branches:
-      - test
+      - main
 
 jobs:
-  build:
+  build_docker_images:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Add your CI steps here 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build Docker images
+        run: |
+          for i in {1..20}; do
+            docker build -t myapp:$i -f dockerfiles/Dockerfile$i .
+          done
